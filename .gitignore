@@ -1,0 +1,21 @@
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin
+testbin/*
+*.pprof
+
+
+# editor and IDE paraphernalia
+.idea
+*.swp
+*.swo
+*~
+
+*.lz4
+.env
+test
