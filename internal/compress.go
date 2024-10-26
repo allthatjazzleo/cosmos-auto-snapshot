@@ -17,7 +17,7 @@ func Compress(homeDir string, chainID string, backendType dbm.BackendType, block
 
 	var outputFile *os.File
 	var err error
-	if keepLocal {
+	if keepLocal || uploader == nil {
 		outputFile, err = os.Create(filename)
 		if err != nil {
 			return err

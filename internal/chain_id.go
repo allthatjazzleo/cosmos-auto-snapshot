@@ -1,22 +1,27 @@
 package internal
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
-
-	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 )
+
+type genesis struct {
+	ChainID string `json:"chain_id"`
+}
 
 // GetChainID returns the chain ID of the chain
 func GetChainID(homeDir string) (string, error) {
-	genesis, err := os.Open(filepath.Join(homeDir, "config", "genesis.json"))
+	genesisFile, err := os.Open(filepath.Join(homeDir, "config", "genesis.json"))
 	if err != nil {
 		return "", err
 	}
-	defer genesis.Close()
-	chainID, err := genutiltypes.ParseChainIDFromGenesis(genesis)
+	defer genesisFile.Close()
+
+	var g genesis
+	err = json.NewDecoder(genesisFile).Decode(&g)
 	if err != nil {
 		return "", err
 	}
-	return chainID, nil
+	return g.ChainID, nil
 }

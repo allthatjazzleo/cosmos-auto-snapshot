@@ -13,7 +13,7 @@ func main() {
 	// Define flags
 	chainHomeDir := flag.String("chain-home", "", "The chain home directory")
 	keepLocal := flag.Bool("keep-local", false, "Keep the local compressed file")
-	uploaderType := flag.String("uploader", "s3", "Uploader type (s3)")
+	uploaderType := flag.String("uploader", "s3", "Uploader type (s3/none) - set none to disable upload")
 
 	// Parse flags
 	flag.Parse()
