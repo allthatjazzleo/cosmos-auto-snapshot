@@ -1,6 +1,6 @@
 # Auto Snapshot
 
-Auto Snapshot is a tool designed to run as `StatefulJob` crd in `cosmos-operator` to automate the process of creating and uploading snapshots of blockchain data. This tool is particularly useful for blockchain nodes that need to periodically back up their data. It should work with
+Auto Snapshot is a tool designed to run as `StatefulJob` crd in `cosmos-operator` to automate the process of creating and uploading snapshots of blockchain data. This tool is particularly useful for blockchain nodes that need to periodically back up their data.
 
 ## Features
 

@@ -18,6 +18,20 @@ type S3Uploader struct {
 	uploader *manager.Uploader
 }
 
+type ProgressReader struct {
+	reader    io.Reader
+	readBytes int64
+}
+
+func (pr *ProgressReader) Read(p []byte) (int, error) {
+	n, err := pr.reader.Read(p)
+	pr.readBytes += int64(n)
+	if n > 0 {
+		log.Printf("Total uploaded so far: %.2f MB\n", float64(pr.readBytes)/(1024*1024))
+	}
+	return n, err
+}
+
 func LoadConfig() (aws.Config, error) {
 	// read credentials from environment variables
 	accessKeyId := os.Getenv("AWS_ACCESS_KEY_ID")
@@ -58,10 +72,14 @@ func (u *S3Uploader) Upload(reader io.Reader, filename string) error {
 	// Create a multipart upload request
 	ctx := context.TODO()
 
+	progressReader := &ProgressReader{
+		reader: reader,
+	}
+
 	result, err := u.uploader.Upload(ctx, &s3.PutObjectInput{
 		Bucket: aws.String(u.bucket),
 		Key:    aws.String(filename),
-		Body:   reader,
+		Body:   progressReader,
 	})
 	if err != nil {
 		return err
