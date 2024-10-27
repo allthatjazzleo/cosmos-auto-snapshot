@@ -8,7 +8,6 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/feature/s3/manager"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
@@ -19,16 +18,7 @@ type S3Uploader struct {
 }
 
 func LoadConfig() (aws.Config, error) {
-	// read credentials from environment variables
-	accessKeyId := os.Getenv("AWS_ACCESS_KEY_ID")
-	accessKeySecret := os.Getenv("AWS_SECRET_ACCESS_KEY")
-
-	if accessKeyId == "" || accessKeySecret == "" {
-		return config.LoadDefaultConfig(context.TODO())
-	}
-
 	return config.LoadDefaultConfig(context.TODO(),
-		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(accessKeyId, accessKeySecret, "")),
 		config.WithRegion("auto"),
 	)
 }
