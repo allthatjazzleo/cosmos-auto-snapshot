@@ -27,7 +27,7 @@ func CheckVersionAndDB(
 
 		store := rootmulti.NewStore(db, cosmossdklog.NewNopLogger(), nil)
 
-		height := store.LatestVersion() + 1
+		height := store.LatestVersion()
 
 		db.Close()
 		return height, dbm.BackendType(backend), nil
