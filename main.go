@@ -13,7 +13,7 @@ func main() {
 	// Define flags
 	chainHomeDir := flag.String("chain-home", "", "The chain home directory")
 	keepLocal := flag.Bool("keep-local", false, "Keep the local compressed file")
-	uploaderType := flag.String("uploader", "s3", "Uploader type (s3/none) - set none to disable upload")
+	uploaderType := flag.String("uploader", "s3", "Uploader type (s3/gcs/none) - set none to disable upload")
 	nodeType := flag.String("node-type", "", "Node type (archive/default)")
 
 	// Parse flags
@@ -46,7 +46,8 @@ func main() {
 	log.Printf("Chain ID: %s\n", chainID)
 
 	var uploader internal.Uploader
-	if *uploaderType == "s3" {
+	switch *uploaderType {
+	case "s3":
 		config, err := internal.LoadConfig()
 		if err != nil {
 			log.Printf("Error loading AWS config: %v\n", err)
@@ -61,6 +62,18 @@ func main() {
 		uploader, err = internal.NewS3Uploader(s3Bucket, config)
 		if err != nil {
 			log.Printf("Error creating S3 uploader: %v\n", err)
+			os.Exit(1)
+		}
+	case "gcs":
+		gcsBucket := os.Getenv("GCS_BUCKET")
+		if gcsBucket == "" {
+			log.Printf("GCS_BUCKET environment variable not set")
+			os.Exit(1)
+		}
+
+		uploader, err = internal.NewGCSUploader(gcsBucket)
+		if err != nil {
+			log.Printf("Error creating GCS uploader: %v\n", err)
 			os.Exit(1)
 		}
 	}
