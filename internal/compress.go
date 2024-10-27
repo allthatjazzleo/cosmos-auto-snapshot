@@ -12,8 +12,11 @@ import (
 	"github.com/pierrec/lz4"
 )
 
-func Compress(homeDir string, chainID string, backendType dbm.BackendType, blockHeight int64, uploader Uploader, keepLocal bool) error {
-	filename := fmt.Sprintf("%s_%s_%d.lz4", chainID, backendType, blockHeight)
+func Compress(homeDir string, chainID string, backendType dbm.BackendType, blockHeight int64, uploader Uploader, keepLocal bool, nodeType string) error {
+	if nodeType != "" {
+		nodeType = "_" + nodeType
+	}
+	filename := fmt.Sprintf("%s_%s%s_%d.lz4", chainID, backendType, nodeType, blockHeight)
 
 	var outputFile *os.File
 	var err error

@@ -14,6 +14,7 @@ func main() {
 	chainHomeDir := flag.String("chain-home", "", "The chain home directory")
 	keepLocal := flag.Bool("keep-local", false, "Keep the local compressed file")
 	uploaderType := flag.String("uploader", "s3", "Uploader type (s3/none) - set none to disable upload")
+	nodeType := flag.String("node-type", "", "Node type (archive/default)")
 
 	// Parse flags
 	flag.Parse()
@@ -64,7 +65,7 @@ func main() {
 		}
 	}
 
-	err = internal.Compress(*chainHomeDir, chainID, backendType, height, uploader, *keepLocal)
+	err = internal.Compress(*chainHomeDir, chainID, backendType, height, uploader, *keepLocal, *nodeType)
 	if err != nil {
 		log.Printf("Error during compression: %v\n", err)
 		os.Exit(1)
