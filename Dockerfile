@@ -72,8 +72,15 @@ RUN set -eux;\
             CGO_LDFLAGS="-L/rocksdb -L/usr/lib -L/lib -lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy -llz4 -lzstd";\
     go build -tags 'rocksdb pebbledb' -ldflags "$LDFLAGS" -a -o snapshot .
 
+
+# Use alpine to source the latest CA certificates
+FROM alpine:3 as alpine-3
+
 # Build final image from scratch
 FROM scratch
+
+# Install trusted CA certificates
+COPY --from=alpine-3 /etc/ssl/cert.pem /etc/ssl/cert.pem
 
 WORKDIR /
 USER 1025:1025
