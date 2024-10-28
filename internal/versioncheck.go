@@ -18,7 +18,7 @@ func CheckVersionAndDB(
 	var db dbm.DB
 
 	// try all backends
-	for _, backend := range []string{"goleveldb", "pebbledb", "memdb", "rocksdb"} {
+	for _, backend := range []string{"goleveldb", "pebbledb", "rocksdb", "memdb"} {
 		db, err = dbm.NewDB("application", getBackend(backend), dataDir)
 		if err != nil {
 			continue

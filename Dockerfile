@@ -76,7 +76,7 @@ RUN set -eux;\
 FROM scratch
 
 WORKDIR /
-COPY --from=builder /workspace/snapshot .
-USER 65532:65532
+USER 1025:1025
+COPY --from=builder --chown=1025:1025 /workspace/snapshot .
 
 ENTRYPOINT ["/snapshot"]
