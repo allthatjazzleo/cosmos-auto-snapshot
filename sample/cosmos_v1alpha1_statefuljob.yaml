@@ -1,0 +1,52 @@
+apiVersion: cosmos.strange.love/v1alpha1
+kind: StatefulJob
+metadata:
+  name: statefuljob-sample
+spec:
+  # optional
+  interval: 24h
+  # required
+  selector:
+    target: value
+  # optional
+  jobTemplate:
+    activeDeadlineSeconds: 3600
+    backoffLimit: 1
+    ttlSecondsAfterFinished: 30
+  # required
+  podTemplate:
+    spec:
+      containers:
+      - name: test
+        image: ghcr.io/allthatjazzleo/auto-snapshot:latest
+        # assuming you have iam role/credentials setup for the appropriate uploader
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_S3_BUCKET
+          value: test123
+        - name: AWS_S3_API_ENDPOINT
+          value: https://xxxxxxxx.r2.cloudflarestorage.com
+        args:
+          - -chain-home
+          - /home/operator/cosmos
+          - -uploader
+          - s3
+          - -node-type
+          - archive
+        volumeMounts:
+          - mountPath: /home/operator/cosmos
+            name: snapshot # StatefulJob always injects volume "snapshot" into pod spec.
+  # required
+  volumeClaimTemplate:
+    storageClassName: premium-rwo
+    accessModes:
+      - ReadWriteOnce

@@ -16,7 +16,7 @@ func Compress(homeDir string, chainID string, backendType dbm.BackendType, block
 	if nodeType != "" {
 		nodeType = "_" + nodeType
 	}
-	filename := fmt.Sprintf("%s_%s%s_%d.lz4", chainID, backendType, nodeType, blockHeight)
+	filename := fmt.Sprintf("%s_%s%s_%d.tar.lz4", chainID, backendType, nodeType, blockHeight)
 
 	var outputFile *os.File
 	var err error
