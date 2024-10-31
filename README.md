@@ -4,9 +4,8 @@ Auto Snapshot is a tool designed to run as `StatefulJob` crd in `cosmos-operator
 
 ## Features
 
-- **Automated Compression**: Compresses blockchain data directories into a single `.lz4` file.
-- **Uploader Support**: Supports uploading the compressed file to AWS S3/cloudflare R2.
-- **Configurable**: Allows configuration through command-line flags and environment variables.
+- **Automated Compression**: Compresses blockchain data directories into a single `.tar.lz4` file.
+- **Uploader Support**: Supports uploading the compressed file to AWS S3/cloudflare R2/GCS.
 - **Storage Optimization**: Can reduces the storage size on local machines by compressing the data and uploading it to a remote storage via I/O pipeline without local storage footprint.
 
 
@@ -29,7 +28,5 @@ Run the tool with the following command:
 
 ## Environment Variables
 
-* AWS_S3_BUCKET: The S3 bucket where the snapshot will be uploaded.
-* AWS_ACCESS_KEY_ID: (Optional) Your AWS access key ID.
-* AWS_SECRET_ACCESS_KEY: (Optional) Your AWS secret access key.
-* AWS_S3_API_ENDPOINT: (Optional) Custom S3 API endpoint.
+* AWS_S3_BUCKET: The S3 bucket where the snapshot will be uploaded if you are using S3 uploader.
+* GCS_BUCKET: The GCS bucket where the snapshot will be uploaded if you are using GCS uploader.
