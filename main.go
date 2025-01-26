@@ -13,7 +13,7 @@ func main() {
 	// Define flags
 	chainHomeDir := flag.String("chain-home", "", "The chain home directory")
 	keepLocal := flag.Bool("keep-local", false, "Keep the local compressed file")
-	uploaderType := flag.String("uploader", "s3", "Uploader type (s3/gcs/none) - set none to disable upload")
+	uploaderType := flag.String("uploader", "s3", "Uploader type (s3/gcs/azure/none) - set none to disable upload")
 	nodeType := flag.String("node-type", "", "Node type (archive/default)")
 
 	// Parse flags
@@ -74,6 +74,18 @@ func main() {
 		uploader, err = internal.NewGCSUploader(gcsBucket)
 		if err != nil {
 			log.Printf("Error creating GCS uploader: %v\n", err)
+			os.Exit(1)
+		}
+	case "azure":
+		azureAccountURL := os.Getenv("AZURE_STORAGE_ACCOUNT_URL")
+		azureContainer := os.Getenv("AZURE_STORAGE_CONTAINER")
+		if azureAccountURL == "" || azureContainer == "" {
+			log.Printf("AZURE_STORAGE_ACCOUNT_URL and AZURE_STORAGE_CONTAINER environment variables are required")
+			os.Exit(1)
+		}
+		uploader, err = internal.NewAzureUploader(azureAccountURL, azureContainer)
+		if err != nil {
+			log.Printf("Error creating Azure uploader: %v\n", err)
 			os.Exit(1)
 		}
 	}
