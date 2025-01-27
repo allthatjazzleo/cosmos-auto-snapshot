@@ -6,8 +6,9 @@ require (
 	cloud.google.com/go/storage v1.45.0
 	cosmossdk.io/log v1.4.1
 	cosmossdk.io/store v1.0.0-rc.0
+	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.8.1
+	github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v1.6.0
 	github.com/aws/aws-sdk-go-v2 v1.32.2
-	github.com/aws/aws-sdk-go-v2/credentials v1.17.41
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.66.1
 )
 
@@ -20,16 +21,15 @@ require (
 	cloud.google.com/go/iam v1.2.1 // indirect
 	cloud.google.com/go/monitoring v1.21.0 // indirect
 	cosmossdk.io/errors v1.0.1 // indirect
-	cosmossdk.io/math v1.3.0 // indirect
+	cosmossdk.io/math v1.5.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.17.0 // indirect
-	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.8.1 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.10.0 // indirect
-	github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v1.6.0 // indirect
 	github.com/AzureAD/microsoft-authentication-library-for-go v1.3.2 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.24.1 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.48.1 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.48.1 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.6 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.17.41 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.17 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.21 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.21 // indirect
@@ -46,10 +46,10 @@ require (
 	github.com/btcsuite/btcd/btcec/v2 v2.3.2 // indirect
 	github.com/census-instrumentation/opencensus-proto v0.4.1 // indirect
 	github.com/cncf/xds/go v0.0.0-20240905190251-b4127c9b8d78 // indirect
+	github.com/cockroachdb/apd/v3 v3.2.1 // indirect
 	github.com/cosmos/gogoproto v1.7.0 // indirect
 	github.com/cosmos/iavl v1.0.0-rc.1 // indirect
 	github.com/cosmos/ics23/go v0.10.0 // indirect
-	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.2.0 // indirect
 	github.com/emicklei/dot v1.4.2 // indirect
 	github.com/envoyproxy/go-control-plane v0.13.0 // indirect
@@ -78,7 +78,6 @@ require (
 	github.com/petermattis/goid v0.0.0-20230317030725-371a4b8eda08 // indirect
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c // indirect
 	github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10 // indirect
-	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/prometheus/client_golang v1.16.0 // indirect
 	github.com/prometheus/client_model v0.6.0 // indirect
 	github.com/prometheus/common v0.44.0 // indirect
@@ -107,7 +106,7 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240903143218-8af14fe29dc1 // indirect
 	google.golang.org/grpc v1.66.2 // indirect
 	google.golang.org/grpc/stats/opentelemetry v0.0.0-20240907200651-3ffb98b2c93a // indirect
-	google.golang.org/protobuf v1.34.2 // indirect
+	google.golang.org/protobuf v1.36.1 // indirect
 )
 
 require (
@@ -134,6 +133,6 @@ require (
 	github.com/rogpeppe/go-internal v1.12.0 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d // indirect
-	golang.org/x/exp v0.0.0-20230905200255-921286631fa9 // indirect
+	golang.org/x/exp v0.0.0-20240404231335-c0f41cb1a7a0 // indirect
 	golang.org/x/sys v0.29.0 // indirect
 )
