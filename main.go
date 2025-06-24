@@ -15,6 +15,7 @@ func main() {
 	keepLocal := flag.Bool("keep-local", false, "Keep the local compressed file")
 	uploaderType := flag.String("uploader", "s3", "Uploader type (s3/gcs/azure/none) - set none to disable upload")
 	nodeType := flag.String("node-type", "", "Node type (archive/default)")
+	prefix := flag.String("prefix", "", "Optional prefix for the filename")
 
 	// Parse flags
 	flag.Parse()
@@ -90,7 +91,7 @@ func main() {
 		}
 	}
 
-	err = internal.Compress(*chainHomeDir, chainID, backendType, height, uploader, *keepLocal, *nodeType)
+	err = internal.Compress(*chainHomeDir, chainID, backendType, height, uploader, *keepLocal, *nodeType, *prefix)
 	if err != nil {
 		log.Printf("Error during compression: %v\n", err)
 		os.Exit(1)

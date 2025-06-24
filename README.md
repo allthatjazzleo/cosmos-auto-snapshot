@@ -23,7 +23,7 @@ go build -o auto-snapshot main.go
 
 Run the tool with the following command:
 ```sh
-./auto-snapshot --chain-home <path_to_chain_home> [--keep-local] [--uploader <uploader_type>]
+./auto-snapshot --chain-home <path_to_chain_home> [--keep-local] [--uploader <uploader_type>] [--prefix <prefix>]
 ```
 
 ## Environment Variables

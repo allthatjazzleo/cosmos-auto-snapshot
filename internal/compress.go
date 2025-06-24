@@ -12,11 +12,17 @@ import (
 	"github.com/pierrec/lz4"
 )
 
-func Compress(homeDir string, chainID string, backendType dbm.BackendType, blockHeight int64, uploader Uploader, keepLocal bool, nodeType string) error {
+func Compress(homeDir string, chainID string, backendType dbm.BackendType, blockHeight int64, uploader Uploader, keepLocal bool, nodeType string, prefix string) error {
 	if nodeType != "" {
 		nodeType = "_" + nodeType
 	}
-	filename := fmt.Sprintf("%s_%s%s_%d.tar.lz4", chainID, backendType, nodeType, blockHeight)
+
+	var filename string
+	if prefix != "" {
+		filename = fmt.Sprintf("%s_%s_%s%s_%d.tar.lz4", prefix, chainID, backendType, nodeType, blockHeight)
+	} else {
+		filename = fmt.Sprintf("%s_%s%s_%d.tar.lz4", chainID, backendType, nodeType, blockHeight)
+	}
 
 	var outputFile *os.File
 	var err error
