@@ -6,7 +6,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/allthatjazzleo/auto-snapshot/internal"
+	"github.com/allthatjazzleo/cosmos-auto-snapshot/internal"
 )
 
 func main() {

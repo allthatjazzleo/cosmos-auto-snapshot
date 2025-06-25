@@ -1,4 +1,4 @@
-# Auto Snapshot
+# Cosmos Auto Snapshot
 
 Auto Snapshot is a tool designed to run as `StatefulJob` crd in `cosmos-operator` to automate the process of creating and uploading snapshots of blockchain data. This tool is particularly useful for blockchain nodes that need to periodically back up their data.
 
@@ -14,16 +14,16 @@ Auto Snapshot is a tool designed to run as `StatefulJob` crd in `cosmos-operator
 To install the tool, clone the repository and build the binary:
 
 ```sh
-git clone https://github.com/allthatjazzleo/auto-snapshot.git
-cd auto-snapshot
-go build -o auto-snapshot main.go
+git clone https://github.com/allthatjazzleo/cosmos-auto-snapshot.git
+cd cosmos-auto-snapshot
+go build -o cosmos-auto-snapshot main.go
 ```
 
 ## Usage
 
 Run the tool with the following command:
 ```sh
-./auto-snapshot --chain-home <path_to_chain_home> [--keep-local] [--uploader <uploader_type>] [--prefix <prefix>]
+./cosmos-auto-snapshot --chain-home <path_to_chain_home> [--keep-local] [--uploader <uploader_type>] [--prefix <prefix>]
 ```
 
 ## Environment Variables
