@@ -4,6 +4,8 @@ go 1.23.1
 
 exclude google.golang.org/grpc/stats/opentelemetry v0.0.0-20240907200651-3ffb98b2c93a
 
+replace github.com/linxGnu/grocksdb => github.com/linxGnu/grocksdb v1.7.16
+
 require (
 	cloud.google.com/go/storage v1.55.0
 	cosmossdk.io/log v1.6.0
